@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', 'PostController@index');
+Route::get('/', 'HomeController@index');
 Route::get('/search', 'PostController@search'); 
 Route::delete('/delete', 'PostController@deleteall'); 
 Route::get('/crud', 'CrudController@create');
 Route::resource('posts', 'PostController');
 Route::resource('cruds', 'CrudController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
