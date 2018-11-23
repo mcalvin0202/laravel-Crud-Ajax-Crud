@@ -14,10 +14,12 @@
 Route::get('/', 'HomeController@index');
 Route::get('/search', 'PostController@search'); 
 Route::delete('/delete', 'PostController@deleteall'); 
-Route::get('/crud', 'CrudController@create');
+Route::get('/crud', 'CrudController@create')->name('ajax');
+Route::get('/post', 'PostController@index')->name('crud');
 Route::resource('posts', 'PostController');
 Route::resource('cruds', 'CrudController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/verification/{token}','Auth\RegisterController@verification');

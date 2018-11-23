@@ -11,7 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-<link rel="stylesheet" href="{{ asset('public/css/app.css')}}"/>
+<link rel="stylesheet" href="{{ asset('public/css/app.css')}}"/> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.9/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -36,7 +41,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                         @guest
+                        
+                         @else
+                    <li><a href="{{route('crud')}}" class="nav-link">CRUD</a></li>
+                    <li><a href="{{route('ajax')}}" class="nav-link">AJAX</a></li>
+                         @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,46 +58,35 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <i class="fas fa-user"></i>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                    </li>
-                                    <li>
-                                    <a href="{{action('CrudController@create')}}">
-                                                Ajax Crud Sample
-                                            </a>
-                                        </li>
-                                        <li>
-                                        <a href="{{action('PostController@index')}}">
-                                                    Ajax Crud Sample
-                                                </a>
-                                            </li>
-                                        <li>
+                               
                                               
         
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                            <a class="nav-link" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Logout     <i class="fas fa-power-off"></i>
+                                            </a>
+                                        </li>
                                 </ul>
-                            </li>
+                            </li>   
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('public/js/app.js') }}"></script>
 </body>
 </html>

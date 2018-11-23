@@ -15,8 +15,11 @@
                     @endif
 
                    <div class="form-group">
-                   <a href="{{action('CrudController@create')}}">go to table</a>
+                   <a href="{{action('CrudController@create')}}">go to Ajax CRUD table</a>
                    </div>
+                   <div class="form-group">
+                    <a href="{{action('PostController@index')}}">go to CRUD table</a>
+                    </div>
                 </div>
             </div>
         </div>
