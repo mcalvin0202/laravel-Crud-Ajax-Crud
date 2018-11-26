@@ -42,6 +42,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                          @guest
+                    <li><a href="{{route('viewfile')}}" class="nav-link">File</a></li>
                         
                          @else
                     <li><a href="{{route('crud')}}" class="nav-link">CRUD</a></li>

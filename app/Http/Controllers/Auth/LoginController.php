@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -37,7 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authentication(Request $request, $user){
+    public function authenticated(Request $request, $user){
         if(!$user->verified){
             auth()->logout();
             return back()->with('warning', 'You need to confirm your account. Please check your email');
