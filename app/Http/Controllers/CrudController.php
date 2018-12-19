@@ -19,6 +19,7 @@ class CrudController extends Controller
     public function index()
     {
         $posts = Posts::all();
+        
         return response()->json($posts);
     }
 

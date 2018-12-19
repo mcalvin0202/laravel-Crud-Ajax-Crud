@@ -21,7 +21,17 @@ class CreatePostsTable extends Migration
             $table->string('author');
             $table->timestamps();
         });
+        Schema::create('post_dummy', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('posts')->onDelete('cascade');
+    
+            $table->integer('follow_user_id')->unsigned()->index();
+            $table->foreign('follow_user_id')->references('id')->on('posts')->onDelete('cascade');
+    
+            $table->timestamps();
+        });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -31,5 +41,6 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        Schema::dropIfExists('post_dummy');
     }
 }

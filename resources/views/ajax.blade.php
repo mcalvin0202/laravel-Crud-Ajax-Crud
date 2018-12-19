@@ -19,11 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        
 
                     </tbody>
                 </table>
@@ -89,8 +85,9 @@
                 }
             })
         }
+        
         viewData();
-     
+        
         function saveData(){
 
             var name =  $('#name').val();
@@ -156,6 +153,7 @@
                 type: 'DELETE',
                 dataType: 'json',
                 url: '/blog/cruds/'+id,
+                
                 success: function(response){
                     viewData();
                 }

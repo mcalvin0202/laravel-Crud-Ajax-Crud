@@ -10,7 +10,7 @@
         
         <p>
         <a href="{{route('formfile')}}" class="btn btn-primary">Upload File</a>
-        </p>.
+        </p>
 
         <div class="row">
             @foreach($files as $file)
@@ -30,6 +30,7 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="col-md-12">{{ $files->links() }}</div>
                 </div>
         </div>
 @endsection

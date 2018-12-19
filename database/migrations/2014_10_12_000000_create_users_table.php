@@ -23,6 +23,15 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        Schema::create('following', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->integer('follow_user_id')->unsigned()->index();
+            $table->foreign('follow_user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,6 +41,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('following');
         Schema::dropIfExists('users');
     }
 }
